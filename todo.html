@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #12c2e9;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+
+        .box {
+            width: 800px;
+            display: flex;
+            justify-content: space-between;
+            margin: 30px;
+        }
+
+        .box input {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            outline: none;
+            font-family: "Sedan SC", serif;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+
+        .box button {
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        ul li {
+            list-style: none;
+            margin: 5px;
+            background-color: rgb(0, 242, 255);
+            width: 60%;
+            padding: 15px 5px;
+            position: relative;
+            font-family: "Sedan SC", serif;
+            color: red;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        ul li span {
+            position: absolute;
+            border-radius: 50%;
+            background-color: black;
+            color: white;
+            font-size: 15px;
+            padding: 5px;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            right: 20px;
+        }
+
+        .active {
+            background-color: white;
+            text-decoration: line-through;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input type="text" placeholder="Write Your To Do" autofocus>
+        <button>Submit</button>
+    </div>
+    <ul>
+
+    </ul>
+</body>
+
+<script>
+    let inputs = document.querySelector("input");
+    let btn = document.querySelector("button");
+    let myul = document.querySelector("ul");
+
+    btn.addEventListener("click", () => {
+        let newli = document.createElement("li");
+        if (inputs.value == "") {
+            alert("Please Enter Item in Input ");
+        }
+        else {
+            newli.innerHTML = inputs.value;
+            myul.append(newli);
+            inputs.value = "";
+
+            let myspan = document.createElement("span");
+            myspan.innerHTML = "X";
+            newli.append(myspan);
+
+            myspan.onclick = () => {
+                newli.remove()
+            }
+            newli.onclick = () => {
+                newli.classList.toggle("active");
+            }
+
+        }
+    })
+</script>
+
+</html>
